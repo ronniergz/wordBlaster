@@ -1,16 +1,14 @@
 :root {
   /* Theme Config */
-  --primary: #383e56;
+  --primary: #000000;
   --secondary: #9fb8ad;
   --light: #c5d7bd;
   --trim: #fb743e;
   --textDark: hsla(0, 0%, 16%, 1);
+  --textMain: #D3D800;
   --textLight: #efefef;
-  --fontPrimary: Verdana, Geneva, Tahoma, sans-serif;
-  --shadow: 2px 2px 5px rgb(61, 61, 61);
-  /* Uniform Zoom Effect */
-  --zoomTransform: scale(1.025);
-  --zoomTransition: 0.2s ease;
+  --fontPrimary: Roboto, Geneva, Tahoma, sans-serif;
+
 }
 
 body,
@@ -21,118 +19,79 @@ p {
 body {
   font-family: var(--fontPrimary);
   background-color: var(--primary);
-  color: var(--textLight);
+  color: var(--textMain);
 }
 
 .container {
-  padding: 0 3rem;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 .section {
   width: 100%;
   text-align: center;
+  display: flex;
+  align-items: center;
+  height: 300px;
+}
+
+#banner-section {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 650px
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50%
+}
+
+#title {
   padding: 2rem 0;
 }
 
-#logo {
-  height: 25vw;
-  max-height: 150px;
-  margin: 3rem;
-}
-
 #coverImg {
-  border-radius: 50%;
-  width: 60vw;
-  max-width: 350px;
-  box-shadow: var(--shadow);
-  transition: var(--zoomTransition);
+  border: 2px solid gray;
+  border-radius: 1.25rem;
+  width: 80%;
+  max-width: 400px;
+
 }
 
-#coverImg:hover,
-#ctrlBackground:hover {
-  transform: var(--zoomTransform);
-  transition: var(--zoomTransition);
+#button-section {
+  height: 150px;
 }
-
 /* ------------------  Start Button ------------------*/
-#startButton {
+.button {
   text-decoration: none;
-  background-color: var(--trim);
-  border-radius: 4rem;
+  background-color: gray;
+  border-radius: 1.5rem;
   display: block;
   width: 12rem;
   height: 3rem;
   margin: 5rem auto;
-  color: var(--lightText);
-  transition: var(--zoomTransition);
-  box-shadow: var(--shadow);
+  color: var(--textDark);
 }
 
-#startButton:hover {
+.button:hover {
   text-decoration: none;
   cursor: pointer;
-  transform: var(--zoomTransform);
-  transition: var(--zoomTransition);
 }
 
-#startButtonText {
+.buttonText {
   line-height: 3rem;
   font-size: 1.25rem;
 }
 /* --------------------------------------------------*/
 
-#description {
-  height: 20rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-
-#controls {
-  height: 35rem;
-  color: var(--textDark);
-  text-align: center;
-}
-
-#ctrlBackground {
-  display: flex;
-  flex-direction: column;
-  width: 85%;
-  height: 100%;
-  margin: 0 auto;
-  background-color: var(--textLight);
-  border-radius: 1rem;
-  transition: var(--zoomTransition);
-  box-shadow: var(--shadow);
-}
-
-.ctrlSection {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  flex-grow: 1;
-}
-
-.ctrlType {
-  margin-bottom: 0;
-}
-
-.control {
-  padding: 1.15rem;
-}
-
-.keys {
-  height: 4rem;
-}
-
-#footer {
-  display: flex;
+#footer-section {
   justify-content: center;
-  align-items: flex-end;
   height: 10rem;
 }
 
@@ -140,12 +99,16 @@ body {
   font-size: 0.8rem;
 }
 
-@media (min-width: 600px) {
-  #coverImg {
-    width: 340px;
+@media (min-width: 900px) {
+
+  #banner-section {
+    flex-direction: row;
+    height: 450px
   }
 
-  #controls {
-    height: 30rem;
+  .column {
+    width: 50%;
+    height: 100%;
   }
+
 }
