@@ -70,6 +70,7 @@ body {
 /* ------------------  Start Button ------------------*/
 .button {
   text-decoration: none;
+  text-align: center;
   background-color: gray;
   border-radius: 1.5rem;
   display: block;
@@ -98,6 +99,41 @@ body {
 #credit {
   font-size: 0.8rem;
 }
+
+/* -----------------  Game Screen  -----------------*/
+
+#game-area {
+  width: 1000px;
+  border: 2px solid gray;
+  height: 700px;
+  margin: 0 auto;
+  background-image: url('assets/images/stars.png');
+  display: grid;
+  grid-template-columns: 200px auto;
+  grid-template-rows: 50px 50px 50px 50px 50px auto;
+  column-gap: 2px;
+  row-gap: 2px;
+}
+
+#ship {
+  height: 40px;
+}
+
+.end-dialog {
+  visibility: hidden;
+  position: absolute;
+  top: 200px;
+  left: 20px;
+  background: var(--textLight);
+  color: var(--textDark);
+  height: 300px;
+  width: 500px;
+  min-width: 95%;
+  text-align: center;
+}
+
+/* --------------------------------------------------*/
+
 
 @media (min-width: 900px) {
 
