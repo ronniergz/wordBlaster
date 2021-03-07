@@ -2,20 +2,20 @@
 <html>
 
 <head>
-  <title>Hungry Cat</title>
-  <meta name="viewport" content="width=820, maximum-scale=1">
+  <title>Word Blaster</title>
+  <meta name="viewport" content="width=device-width, maximum-scale=1">
   <link rel="stylesheet" href="/styles/index.css">
 </head>
 
 <body>
 
-  <script src="/src/app.js"></script>
+
 
   <div id="container">
 
     <div id="game-area">
 
-      <div id='column'>
+      <div id='column-1'>
         <img src="assets/images/ship.png" id="ship"></img>
       </div>
 
@@ -24,24 +24,30 @@
       <div class="row row-3"></div>
       <div class="row row-4"></div>
       <div class="row row-5"></div>
+      <div class="row row-6"></div>
 
-      <div id='score-area'></div>
+      <div class="row row-7 score-area">
+        <p id="words">Words: </p>
+        <h1 id="time">Time</h1>
+      </div>
 
     </div>
 
 
-    <div class="end-dialog">
-      <p>Total Words: <span id="word-count"></span></p>
-      <a href='/' class='button' id="quitButton">
-        <span class="buttonText">Quit</span>
-      </a>
-      <a href='/app' class='button' id="restartButton">
-        <span class="buttonText">Try Again</span>
-      </a>
-    </div>
 
   </div>
 
+  <div class=" end-dialog">
+    <p>Total Words: <span id="word-count"></span></p>
+    <a href='/' class='button' id="quitButton">
+      <span class="buttonText">Quit</span>
+    </a>
+    <a href='/app' class='button' id="restartButton">
+      <span class="buttonText">Try Again</span>
+    </a>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 
 </html>
