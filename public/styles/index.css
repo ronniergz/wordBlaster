@@ -107,9 +107,9 @@ body {
   border: 2px solid gray;
   height: 700px;
   margin: 0 auto;
-  /* background-image: url('/assets/images/stars.png'); */
+  background-image: url('/assets/images/stars.png');
   display: grid;
-  grid-template-columns: 200px auto;
+  grid-template-columns: 150px auto;
   grid-template-rows: repeat(6, 80px) auto;
   column-gap: 2px;
   row-gap: 2px;
@@ -118,7 +118,7 @@ body {
 #column-1 {
   grid-row: 1/7;
   background-color: gray;
-  justify-self: center;
+  justify-self: end;
 }
 
 #ship {
@@ -131,8 +131,20 @@ body {
 .row {
   background-color: gray;
   align-self: center;
-  justify-self: end;
+  font-size: 1.5rem;
 }
+
+.word-start {
+  position: relative;
+  left: 50%;
+}
+
+/* .word-move {
+  left: 0%;
+  transition: linear 10s;
+  transition-delay: .5s;
+} */
+
 
 .score-area {
   grid-column: 1/3;

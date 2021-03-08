@@ -9,8 +9,6 @@
 
 <body>
 
-
-
   <div id="container">
 
     <div id="game-area">
@@ -19,25 +17,40 @@
         <img src="assets/images/ship.png" id="ship"></img>
       </div>
 
-      <div class="row row-1"></div>
-      <div class="row row-2"></div>
-      <div class="row row-3"></div>
-      <div class="row row-4"></div>
-      <div class="row row-5"></div>
-      <div class="row row-6"></div>
+      <div class="row row-1">
+        <div class="word word-1"></div>
+      </div>
+      <div class="row row-2">
+        <div class="word word-2"></div>
+      </div>
+      <div class="row row-3">
+        <div class="word word-3"></div>
+      </div>
+      <div class="row row-4">
+        <div class="word word-4"></div>
+      </div>
+      <div class="row row-5">
+        <div class="word word-5"></div>
+      </div>
+      <div class="row row-6">
+        <div class="word word-6"></div>
+      </div>
 
-      <div class="row row-7 score-area">
-        <p id="words">Words: </p>
-        <h1 id="time">Time</h1>
+      <div class="row-7 score-area">
+        <p id="words">Words: <span id='score'></span></p>
+        <h1 id="time-display">Time</h1>
       </div>
 
     </div>
 
 
+    <button id='testButton'>Test</button>
+
+
 
   </div>
 
-  <div class=" end-dialog">
+  <div class="end-dialog">
     <p>Total Words: <span id="word-count"></span></p>
     <a href='/' class='button' id="quitButton">
       <span class="buttonText">Quit</span>
@@ -47,7 +60,8 @@
     </a>
   </div>
 
-  <script src="app.js"></script>
+  <script type='module' src="assets/data/words.js"></script>
+  <script type='module' src="app.js"></script>
 </body>
 
 </html>
