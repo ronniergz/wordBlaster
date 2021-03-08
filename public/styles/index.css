@@ -102,12 +102,19 @@ body {
 
 /* -----------------  Game Screen  -----------------*/
 
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}  
+
 #game-area {
   width: 1000px;
   border: 2px solid gray;
   height: 700px;
   margin: 0 auto;
   background-image: url('/assets/images/stars.png');
+  overflow: hidden;
   display: grid;
   grid-template-columns: 150px auto;
   grid-template-rows: repeat(6, 80px) auto;
@@ -117,41 +124,63 @@ body {
 
 #column-1 {
   grid-row: 1/7;
-  background-color: gray;
+  /* background-color: gray; */
   justify-self: end;
 }
 
-#ship {
-  height: 40px;
+#ship-wrapper {
+
   position: relative;
   top: 20px;
   transform: translateY(240px)
 }
 
+#ship {
+  height: 40px;
+}
+
+.beam {
+  background-color: red;
+  visibility: hidden;
+  position: relative;
+  height: 6px;
+  width: 20px;
+  border-radius: 3px;
+  top: -20px;
+  left: 80px;
+  visibility: hidden;
+}
+
 .row {
-  background-color: gray;
   align-self: center;
   font-size: 1.5rem;
 }
 
-.word-start {
-  position: relative;
-  left: 50%;
+
+.beam-fire {
+  visibility: visible;
+  transition: linear .08s;
 }
 
-/* .word-move {
-  left: 0%;
-  transition: linear 10s;
-  transition-delay: .5s;
-} */
+.word {
+  position: relative;
+  left: 100%;
+  display: inline-block;
+}
 
+.word-move {
+  animation: scroll 5s linear;
+}
+@keyframes scroll {
+  from {left: 100%;}
+  to {left: 0%;}
+}
 
 .score-area {
   grid-column: 1/3;
   align-self: center;
   justify-self: center;
   color: var(--textLight);
-  background-color: gray;
 }
 
 .end-dialog {

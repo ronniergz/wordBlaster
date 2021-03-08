@@ -9,12 +9,15 @@
 
 <body>
 
-  <div id="container">
+  <div id="container-game">
 
     <div id="game-area">
 
       <div id='column-1'>
-        <img src="assets/images/ship.png" id="ship"></img>
+        <div id='ship-wrapper'>
+          <img src="assets/images/ship.png" id="ship"></img>
+          <div class="beam"></div>
+        </div>
       </div>
 
       <div class="row row-1">
@@ -44,14 +47,15 @@
     </div>
 
 
-    <button id='testButton'>Test</button>
+    <button id='pauseButton'>Pause</button>
+    <button id='fireButton'>Fire!</button>
 
 
 
   </div>
 
   <div class="end-dialog">
-    <p>Total Words: <span id="word-count"></span></p>
+    <p>Total Words: <span id="final-score"></span></p>
     <a href='/' class='button' id="quitButton">
       <span class="buttonText">Quit</span>
     </a>
