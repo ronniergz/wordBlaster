@@ -67,7 +67,7 @@ body {
 #button-section {
   height: 150px;
 }
-/* -------  Start Button --------*/
+/* -------  Buttons --------*/
 .button {
   text-decoration: none;
   text-align: center;
@@ -169,7 +169,7 @@ body {
 }
 
 .word-move {
-  animation: scroll 5s linear;
+  animation: scroll 4s linear;
 }
 @keyframes scroll {
   from {left: 100%;}

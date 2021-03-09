@@ -6,12 +6,12 @@ const beam = document.querySelector('.beam');
 const timeDisplay = document.querySelector('#time-display');
 const wordScore = document.querySelector('#score');
 const pauseButton = document.querySelector('#pauseButton');
-const fireButton = document.querySelector('#fireButton');
 const endDialog = document.querySelector('.end-dialog');
 const finalScore = document.querySelector('#final-score');
 let currentWord;
 let currentScore = 0;
-let time = 360;     // seconds
+let time = 60;     // seconds
+let isPaused = false;
 
 // Get random word in the word list array
 const getWord = (list) => {
@@ -56,7 +56,7 @@ timeDisplay.innerHTML = min + ':' + sec; console.log(min + ':' + sec);
 
 // start timer
 var timer = setInterval(() => {
-  time--;
+  if (isPaused === false) time--;
   min = pad(Math.floor(time / 60), 2);
   sec = pad(time - (min * 60), 2);
   if (time === 0) {   // time expired
@@ -100,11 +100,12 @@ word4.addEventListener('animationend', () => {
 // toggle animation 
 pauseButton.addEventListener('click', (e) => {
   if (word4.style.animationPlayState === 'paused') {
-    word4.style.animationPlayState = 'running'
-  } else word4.style.animationPlayState = 'paused';
+    isPaused = false;
+    word4.style.animationPlayState = 'running';
+  } else {
+    word4.style.animationPlayState = 'paused';
+    isPaused = true;
+  }
 });
 
-fireButton.addEventListener('click', (e) => {
-  console.log('Fire!');
-});
 
