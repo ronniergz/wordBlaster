@@ -1,8 +1,7 @@
-# Title
+# Word Blaster
 
-Tagline
+Typing game based on classic 2D space shooters.
 
-## Vanilla.ja
+## Vanilla.js
 
-
-Description
+Built with CSS Grid and vanilla javascript
