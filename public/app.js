@@ -1,7 +1,10 @@
 import wordList from '/assets/data/words.js';
-const word4 = document.querySelector('.word-4');
-const rowLeft = document.querySelector('.row-4');
 const gameArea = document.querySelector('#game-area');
+
+const words = document.querySelectorAll('.word');  // node list
+const columnWords = document.querySelector('.column-words');
+const targetWord = document.querySelector('#target-word');
+
 const beam = document.querySelector('.beam');
 const timeDisplay = document.querySelector('#time-display');
 const wordScore = document.querySelector('#score');
@@ -13,12 +16,24 @@ let currentWord;
 let currentScore = 0;
 let time = 360;     // seconds
 
-// Get random word in the word list array
+// Get random word in the word list arraytarget
 const getWord = (list) => {
   let index = Math.floor(Math.random() * list.length);
-  currentWord = list[index];
-  setTimeout(() => { word4.classList.add('word-move'); }, 100);
-  word4.innerHTML = currentWord;
+  let currentWord = list[index];
+  setTimeout(() => {
+
+    // create new word div
+    let newDiv = document.createElement('div');
+    newDiv.innerHTML = currentWord;
+    columnWords.insertBefore(newDiv, targetWord);
+    console.log(words);
+    // give it random position
+
+    // start animation
+    newDiv.classList.add('word', 'word-move', 'target-word');
+    newDiv.classList.add('current-word');
+
+  }, 100);
   return;
 }
 
@@ -29,9 +44,10 @@ const pad = (number, digits) => {
   return string;
 }
 
+// animate laser beam to destroy first letter
 const fire = () => {
-  let rect = word4.getBoundingClientRect();   // get current word boundary
-  let gameScreen = gameArea.getBoundingClientRect();  // get screen boundary
+  let rect = word.getBoundingClientRect();   // get current word boundary
+  let gameScreen = columnWords.getBoundingClientRect();  // get screen boundary
   let location = window.innerWidth - gameScreen.width;
   let beamCushion = 20;   // add a small space where beam hits word.
   beam.classList.add('beam-fire');
@@ -47,13 +63,11 @@ const fire = () => {
 getWord(wordList);
 wordScore.innerHTML = currentScore;
 
-//-------------   Timer ---------------//
 
+//-------------   Timer ---------------//
 // add initial time to display
 let min = pad(Math.floor(time / 60), 2)
 let sec = pad(time - (min * 60), 2)
-timeDisplay.innerHTML = min + ':' + sec; console.log(min + ':' + sec);
-
 // start timer
 var timer = setInterval(() => {
   time--;
@@ -76,11 +90,11 @@ document.addEventListener('keydown', (e) => {
   if (e.key === currentLetter) {     // remove first letter
     fire();     // shoot laser at word
     currentWord = currentWord.slice(1);
-    word4.innerHTML = currentWord;
+    word.innerHTML = currentWord;
     if (currentWord === '') {
       currentScore++;
       wordScore.innerHTML = currentScore;
-      word4.classList.remove('word-move');
+      word.classList.remove('word-move');
       getWord(wordList);
       // restart animation
     }
@@ -88,20 +102,22 @@ document.addEventListener('keydown', (e) => {
 });
 
 //--------   Word Animation End  ---------//
-word4.addEventListener('animationend', () => {
-  timeDisplay.innerHTML = '00:00';
-  clearInterval(timer);  // end timer
-  finalScore.innerHTML = currentScore;
-  endDialog.style.visibility = 'visible';
+words.forEach(word => {
+  word.addEventListener('animationend', () => {
+    timeDisplay.innerHTML = '00:00';
+    clearInterval(timer);  // end timer
+    finalScore.innerHTML = currentScore;
+    endDialog.style.visibility = 'visible';
+  })
 });
 
 
 //~~~~~~~~~~~~  Testing  ~~~~~~~~~~~~~~//
 // toggle animation 
 pauseButton.addEventListener('click', (e) => {
-  if (word4.style.animationPlayState === 'paused') {
-    word4.style.animationPlayState = 'running'
-  } else word4.style.animationPlayState = 'paused';
+  if (words.style.animationPlayState === 'paused') {
+    words.style.animationPlayState = 'running'
+  } else words.style.animationPlayState = 'paused';
 });
 
 fireButton.addEventListener('click', (e) => {
