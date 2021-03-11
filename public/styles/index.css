@@ -30,6 +30,7 @@ body {
 
 .link-text {
   color:peru;
+  text-decoration: none;
 }
 
 .section {
@@ -42,12 +43,18 @@ body {
   height: 300px;
 }
 
+
 #banner-section {
   width: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
   height: 650px
+}
+
+#logo {
+  height: 200px;
+  padding: 2rem;
 }
 
 .column {
@@ -133,6 +140,10 @@ body {
   grid-column: 1/3;
   justify-self: center;
   align-self: center;
+}
+
+#logo-ingame {
+  height: 80px;
 }
 
 #column-1 {
