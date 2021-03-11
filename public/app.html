@@ -13,6 +13,10 @@
 
     <div id="game-area">
 
+      <div id="header-area">
+        <h1>Word Blaster</h1>
+      </div>
+
       <div id='column-1'>
         <div id='ship-wrapper'>
           <img src="assets/images/ship.png" id="ship"></img>
@@ -35,17 +39,13 @@
       <div class="row row-5">
         <div class="word word-5"></div>
       </div>
-      <div class="row row-6">
-        <div class="word word-6"></div>
-      </div>
 
-      <div class="row-7 score-area">
+      <div class="score-area">
         <p id="words">Words: <span id='score'></span></p>
         <h1 id="time-display">Time</h1>
       </div>
 
     </div>
-
 
     <a id='pauseButton' class="button">
       <span class="buttonText">Pause</span>
@@ -65,6 +65,7 @@
 
   <script type='module' src="assets/data/words.js"></script>
   <script type='module' src="app.js"></script>
+
 </body>
 
 </html>
