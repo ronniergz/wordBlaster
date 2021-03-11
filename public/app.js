@@ -12,40 +12,45 @@ let currentWord = '';
 let currentRow;  // element
 let currentRowNum;  // number
 let currentScore = 0;
-let time = 360;     // seconds
+let time = 60;     // seconds
 let nextWordCounter = 0;
 let isPaused = false;
 
-// Get random word in the word list array
-const getWord = (list) => {
-  let index = Math.floor(Math.random() * list.length);
-  let newWord = list[index];
-
+// Get a new random row number that is not already used.
+// 'activeRows' array keeps track of rows in use and order of words
+const getRandomRowNum = () => {
   let duplicate = false;
   let randomRowNum = Math.ceil(Math.random() * 5); // random number
-  // check if row number is already in the active rows array
-  do {
+  do {   // check if row number is already in the active rows array
     let matches = activeRows.filter((num) => num === randomRowNum)
     if (matches.length > 0) {  // there's a duplicate!
       duplicate = true;
       randomRowNum = Math.ceil(Math.random() * 5); // random number
     } else duplicate = false;
   } while (duplicate === true);
-  // add new row number to array
-  activeRows.push(randomRowNum);
+  return randomRowNum;
+}
 
+// Get random word in the word list array
+const getWord = (list) => {
+  let index = Math.floor(Math.random() * list.length);
+  let newWord = list[index];
+  // add new, random row number to array
+  let newRow = getRandomRowNum()
+  activeRows.push(newRow);
   // update current word and row
   currentRowNum = activeRows[0];
   currentRow = document.querySelector('.word-' + currentRowNum);
-  let randomRow = document.querySelector('.word-' + randomRowNum);
+  let randomRow = document.querySelector('.word-' + newRow);
   randomRow.innerHTML = newWord;
-  if (activeRows.length === 1) currentWord = newWord;
-
+  if (activeRows.length === 1) {
+    currentWord = newWord;
+    currentRow.classList.add('target-word');
+  }
   // move ship to correct location, rows in 80px increments
-  //moveShip(currentRowNum);
+  moveShip(currentRowNum);
   // start word move animation
   setTimeout(() => { randomRow.classList.add('word-move'); }, 100);
-
   return;
 }
 
@@ -60,6 +65,7 @@ const moveShip = (rowNum) => {
   let shipY = 80 * rowNum - 80 + 'px';
   shipWrapper.style.transform = 'translateY(' + shipY + ')';
 }
+
 // shoot beam at the current word
 const fire = () => {
   let rect = currentRow.getBoundingClientRect();   // get current word boundary
@@ -92,9 +98,8 @@ var timer = setInterval(() => {
   }
   min = pad(Math.floor(time / 60), 2);
   sec = pad(time - (min * 60), 2);
-  // add the next word every 3s
-  if (nextWordCounter === 2) {   /*---------------------------------*/
-    if (activeRows.length < 5) getWord(wordList);
+  if (nextWordCounter === 1) {   // add the next word every second
+    if (activeRows.length < 5) getWord(wordList);   // 5 words on screen max
     nextWordCounter = 0;
   }
   if (time === 0) {   // time expired
@@ -116,12 +121,14 @@ document.addEventListener('keydown', (e) => {
     if (currentWord === '') {
       currentScore++;
       wordScore.innerHTML = currentScore;
-      currentRow.classList.remove('word-move');
+      currentRow.classList.remove('word-move', 'target-word');
       activeRows = activeRows.slice(1);
       // move current word to next word
+      currentRowNum = activeRows[0];
       currentRow = document.querySelector('.word-' + activeRows[0]);
+      currentRow.classList.add('target-word');
       currentWord = currentRow.innerHTML;
-      //moveShip(currentRowNum);
+      moveShip(currentRowNum);
     }
   };
 });
@@ -132,23 +139,24 @@ document.addEventListener('animationend', () => {
   clearInterval(timer);  // end timer
   finalScore.innerHTML = currentScore;
   endDialog.style.visibility = 'visible';
+  togglePause(true);
 });
 
 //-------------   Pause Game  -------------//
+const togglePause = (state) => {
+  let animation;
+  if (state === true) animation = 'paused';
+  else animation = 'running'
+  for (let i = 1; i <= 5; i++) {
+    let word = document.querySelector('.word-' + i);
+    word.style.animationPlayState = animation;
+  }
+  isPaused = state;
+}
 // toggle animation 
 pauseButton.addEventListener('click', (e) => {
-  const togglePause = (state) => {
-    let animation;
-    if (state === true) animation = 'paused';
-    else animation = 'running'
-    for (let i = 1; i <= 5; i++) {
-      let word = document.querySelector('.word-' + i);
-      word.style.animationPlayState = animation;
-    }
-    isPaused = state;
-  }
   if (isPaused === false) togglePause(true);
-  else togglePause(false)
+  else togglePause(false);
 });
 
 

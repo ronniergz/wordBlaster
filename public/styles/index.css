@@ -1,11 +1,10 @@
 :root {
   /* Theme Config */
   --primary: #000000;
-  --secondary: #9fb8ad;
-  --light: #c5d7bd;
   --trim: #fb743e;
   --textDark: hsla(0, 0%, 16%, 1);
   --textMain: #D3D800;
+  --textTarget: #fbff01;
   --textLight: #efefef;
   --fontPrimary: Roboto, Geneva, Tahoma, sans-serif;
 
@@ -168,7 +167,6 @@ body {
   font-size: 1.5rem;
 }
 
-
 .beam-fire {
   visibility: visible;
   transition: linear .08s;
@@ -176,16 +174,20 @@ body {
 
 .word {
   position: relative;
-  left: 50%;        
+  left: 100%;        
   display: inline-block;
 }
 
 .word-move {
-  animation: scroll 15s linear; 
+  animation: scroll 8s linear; 
 }
 @keyframes scroll {
   from {left: 100%;}
   to {left: 0%;}
+}
+
+.target-word {
+  color:var(--textTarget)
 }
 
 .score-area {
@@ -209,8 +211,7 @@ body {
   text-align: center;
 }
 
-/* --------------------------------------------------*/
-
+/* -----------------  Media Queries  ---------------*/
 
 @media (min-width: 900px) {
 
